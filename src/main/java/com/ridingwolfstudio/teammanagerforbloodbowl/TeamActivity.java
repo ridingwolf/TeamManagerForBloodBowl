@@ -14,7 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.ridingwolfstudio.teammanagerforbloodbowl.Mocks.TeamMock;
 
 public class TeamActivity extends FragmentActivity implements ActionBar.OnNavigationListener {
 
@@ -47,6 +50,14 @@ public class TeamActivity extends FragmentActivity implements ActionBar.OnNaviga
                                 getString(R.string.title_section3),
                         }),
                 this);
+
+
+        ListView lv = (ListView) findViewById(R.id.playerlist);
+        // This is the array adapter, it takes the context of the activity as a first // parameter, the type of list view as a second parameter and your array as a third parameter
+        ArrayAdapter<String> arrayAdapter =
+                new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, new TeamMock().players);
+        lv.setAdapter(arrayAdapter);
+
     }
 
 
