@@ -6,11 +6,8 @@ import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -18,6 +15,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ridingwolfstudio.teammanagerforbloodbowl.Mocks.TeamMock;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TeamActivity extends FragmentActivity implements ActionBar.OnNavigationListener {
 
@@ -50,14 +50,6 @@ public class TeamActivity extends FragmentActivity implements ActionBar.OnNaviga
                                 getString(R.string.title_section3),
                         }),
                 this);
-
-
-        ListView lv = (ListView) findViewById(R.id.playerlist);
-        // This is the array adapter, it takes the context of the activity as a first // parameter, the type of list view as a second parameter and your array as a third parameter
-        ArrayAdapter<String> arrayAdapter =
-                new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, new TeamMock().players);
-        lv.setAdapter(arrayAdapter);
-
     }
 
 
@@ -88,13 +80,35 @@ public class TeamActivity extends FragmentActivity implements ActionBar.OnNaviga
     public boolean onNavigationItemSelected(int position, long id) {
         // When the given dropdown item is selected, show its contents in the
         // container view.
-        Fragment fragment = new DummySectionFragment();
-        Bundle args = new Bundle();
-        args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-        fragment.setArguments(args);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, fragment)
-                .commit();
+        ListView lv = (ListView) findViewById(R.id.playerlist);
+        // This is the array adapter, it takes the context of the activity as a first // parameter, the type of list view as a second parameter and your array as a third parameter
+        List<String> team;
+        TeamMock teamMock = new TeamMock();
+        switch (position)
+        {
+            case 0:
+                team = teamMock.HumanTeam;
+                break;
+            case 1:
+                team = teamMock.ElfTeam;
+                break;
+            case 2:
+                team = teamMock.GoblinTeam;
+                break;
+            default:
+                team = new ArrayList<String>();
+        }
+        ArrayAdapter<String> arrayAdapter =
+                new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, team);
+        lv.setAdapter(arrayAdapter);
+//
+//        Fragment fragment = new DummySectionFragment();
+//        Bundle args = new Bundle();
+//        args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+//        fragment.setArguments(args);
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.container, fragment)
+//                .commit();
         return true;
     }
 
