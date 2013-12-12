@@ -1,9 +1,8 @@
-package com.ridingwolfstudio.teammanagerforbloodbowl;
+package com.ridingwolfstudio.teammanagerforbloodbowl.Activities;
 
 
 import android.app.ActionBar;
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -14,10 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.ridingwolfstudio.teammanagerforbloodbowl.Data.Team;
 import com.ridingwolfstudio.teammanagerforbloodbowl.Mocks.TeamMock;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.ridingwolfstudio.teammanagerforbloodbowl.Data.Player;
+import com.ridingwolfstudio.teammanagerforbloodbowl.R;
 
 public class TeamActivity extends FragmentActivity implements ActionBar.OnNavigationListener {
 
@@ -26,6 +25,7 @@ public class TeamActivity extends FragmentActivity implements ActionBar.OnNaviga
      * current dropdown position.
      */
     private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
+    private Team[] LoadedTeams;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +37,24 @@ public class TeamActivity extends FragmentActivity implements ActionBar.OnNaviga
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
+        TeamMock mock = new TeamMock();
+        LoadedTeams = mock.Teams.toArray(new Team[mock.Teams.size()]);
+
+        String[] teamNames = new String[LoadedTeams.length];
+        for(int i = 0; i < LoadedTeams.length; i++)
+                teamNames[i] = LoadedTeams[i].Name;
+
         // Set up the dropdown list navigation in the action bar.
         actionBar.setListNavigationCallbacks(
                 // Specify a SpinnerAdapter to populate the dropdown list.
+
                 new ArrayAdapter<String>(
                         actionBar.getThemedContext(),
                         android.R.layout.simple_list_item_1,
                         android.R.id.text1,
-                        new String[] {
-                                getString(R.string.title_section1),
-                                getString(R.string.title_section2),
-                                getString(R.string.title_section3),
-                        }),
-                this);
+                        teamNames),
+                        this
+        );
     }
 
 
@@ -82,24 +87,12 @@ public class TeamActivity extends FragmentActivity implements ActionBar.OnNaviga
         // container view.
         ListView lv = (ListView) findViewById(R.id.playerlist);
         // This is the array adapter, it takes the context of the activity as a first // parameter, the type of list view as a second parameter and your array as a third parameter
-        List<String> team;
-        TeamMock teamMock = new TeamMock();
-        switch (position)
-        {
-            case 0:
-                team = teamMock.HumanTeam;
-                break;
-            case 1:
-                team = teamMock.ElfTeam;
-                break;
-            case 2:
-                team = teamMock.GoblinTeam;
-                break;
-            default:
-                team = new ArrayList<String>();
-        }
-        ArrayAdapter<String> arrayAdapter =
-                new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, team);
+
+        ArrayAdapter<Player> arrayAdapter =
+                new ArrayAdapter<Player>(this,android.R.layout.simple_list_item_1, LoadedTeams[position].Players);
+                // inflate & populate own item
+                // new ArrayAdapter<Player>(this,R.layout.team_playerlist_item, LoadedTeams[position].Players);
+
         lv.setAdapter(arrayAdapter);
 //
 //        Fragment fragment = new DummySectionFragment();
