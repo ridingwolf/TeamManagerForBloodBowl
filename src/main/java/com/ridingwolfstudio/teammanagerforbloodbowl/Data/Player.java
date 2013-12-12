@@ -24,7 +24,7 @@ public class Player extends PlayerTemplate
 	{
 		
 		return 
-		Nr.toString() 
+		"#" + Nr.toString()
 		+ " " + Name 
 		+ " " + Type 
 		+ " " + Movement 
