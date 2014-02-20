@@ -2,75 +2,112 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="5dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical">
+        android:layout_gravity="center_vertical"
+        android:background="#a9a9a9">
 
-        <EditText
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/editText"
+            android:id="@+id/playerId"
             android:layout_row="0"
             android:layout_column="0"
-            android:text="1"/>
+            android:editable="false"
+            android:layout_weight=".06"
+            android:gravity="center_horizontal"
+            android:layout_margin="2dp"
+            android:padding="1dp"
+            android:background="#e6e6e6" />
 
-        <EditText
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/editText"
+            android:id="@+id/playerName"
             android:layout_row="0"
             android:layout_column="1"
-            android:text="Name of the player"/>
+            android:editable="false"
+            android:layout_weight=".59"
+            android:layout_margin="2dp"
+            android:padding="1dp"
+            android:background="#e6e6e6"/>
 
-        <EditText
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/editText"
+            android:id="@+id/playerType"
             android:layout_row="0"
             android:layout_column="2"
-            android:text="type"/>
+            android:editable="false"
+            android:layout_weight=".35"
+            android:layout_margin="2dp"
+            android:padding="1dp"
+            android:background="#e6e6e6"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical">
+        android:layout_gravity="center_vertical"
+        android:background="#a9a9a9">
 
-        <EditText
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".04"
             android:layout_height="wrap_content"
-            android:id="@+id/editText4"
-            android:text="6" />
+            android:id="@+id/playerMovement"
+            android:editable="false"
+            android:gravity="center"
+            android:layout_margin="2dp"
+            android:padding="1dp"
+            android:background="#e6e6e6"/>
 
-        <EditText
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".04"
             android:layout_height="wrap_content"
-            android:id="@+id/editText6"
-            android:text="3" />
+            android:id="@+id/playerStrength"
+            android:editable="false"
+            android:gravity="center"
+            android:layout_margin="2dp"
+            android:padding="1dp"
+            android:background="#e6e6e6"/>
 
-        <EditText
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".04"
             android:layout_height="wrap_content"
-            android:id="@+id/editText5"
-            android:text="3" />
+            android:id="@+id/playerAgility"
+            android:editable="false"
+            android:gravity="center"
+            android:layout_margin="2dp"
+            android:padding="1dp"
+            android:background="#e6e6e6" />
 
-        <EditText
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".04"
             android:layout_height="wrap_content"
-            android:id="@+id/editText3"
-            android:text="8" />
+            android:id="@+id/playerArmour"
+            android:editable="false"
+            android:gravity="center"
+            android:layout_margin="2dp"
+            android:padding="1dp"
+            android:background="#e6e6e6" />
 
-        <EditText
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".84"
             android:layout_height="wrap_content"
-            android:id="@+id/editText2"
+            android:id="@+id/playerSkills"
             android:layout_row="0"
             android:layout_column="1"
-            android:text="skillzzzzzzzzzz list"/>
-
+            android:editable="false"
+            android:layout_margin="2dp"
+            android:padding="1dp"
+            android:background="#e6e6e6"/>
     </LinearLayout>
-
-
 </LinearLayout>
