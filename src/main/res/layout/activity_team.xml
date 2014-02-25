@@ -8,5 +8,6 @@
 <ListView
     android:id="@+id/playerlist"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent"
+    android:background="@drawable/abc_ab_bottom_solid_dark_holo"/>
 </FrameLayout>

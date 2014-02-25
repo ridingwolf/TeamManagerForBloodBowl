@@ -1,113 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="5dp">
+    android:padding="2dp"
+    android:background="#a9a9a9"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:background="#a9a9a9">
+        android:background="@drawable/abc_ab_bottom_solid_dark_holo"
+        android:layout_marginRight="5sp"
+        android:layout_marginLeft="5sp">
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:id="@+id/playerId"
             android:layout_row="0"
             android:layout_column="0"
             android:editable="false"
-            android:layout_weight=".06"
-            android:gravity="center_horizontal"
-            android:layout_margin="2dp"
-            android:padding="1dp"
-            android:background="#e6e6e6" />
+            android:layout_weight=".07"
+            android:gravity="center"
+            android:layout_marginBottom="2sp"
+            android:textSize="@dimen/abc_action_bar_title_text_size"
+            android:textStyle="bold"
+            android:background="#a9a9a9"
+            android:text="16"/>
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight=".93"
             android:id="@+id/playerName"
             android:layout_row="0"
             android:layout_column="1"
             android:editable="false"
-            android:layout_weight=".59"
-            android:layout_margin="2dp"
-            android:padding="1dp"
-            android:background="#e6e6e6"/>
+            android:layout_marginBottom="2sp"
+            android:paddingLeft="5sp"
+            android:textSize="@dimen/abc_action_bar_title_text_size"
+            android:textStyle="bold"
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/playerType"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:editable="false"
-            android:layout_weight=".35"
-            android:layout_margin="2dp"
-            android:padding="1dp"
-            android:background="#e6e6e6"/>
+            android:background="#a9a9a9"
+            android:text="Player Name X"/>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:background="#a9a9a9">
+        android:orientation="vertical"
+        android:padding="5sp">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight=".04"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/playerMovement"
-            android:editable="false"
-            android:gravity="center"
-            android:layout_margin="2dp"
-            android:padding="1dp"
-            android:background="#e6e6e6"/>
+            android:layout_gravity="center_vertical">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight=".04"
-            android:layout_height="wrap_content"
-            android:id="@+id/playerStrength"
-            android:editable="false"
-            android:gravity="center"
-            android:layout_margin="2dp"
-            android:padding="1dp"
-            android:background="#e6e6e6"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight=".05"
+                android:layout_height="wrap_content"
+                android:id="@+id/playerMovement"
+                android:editable="false"
+                android:gravity="center"
+                android:text="6"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight=".04"
-            android:layout_height="wrap_content"
-            android:id="@+id/playerAgility"
-            android:editable="false"
-            android:gravity="center"
-            android:layout_margin="2dp"
-            android:padding="1dp"
-            android:background="#e6e6e6" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight=".05"
+                android:layout_height="wrap_content"
+                android:id="@+id/playerStrength"
+                android:editable="false"
+                android:gravity="center"
+                android:text="3"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight=".04"
-            android:layout_height="wrap_content"
-            android:id="@+id/playerArmour"
-            android:editable="false"
-            android:gravity="center"
-            android:layout_margin="2dp"
-            android:padding="1dp"
-            android:background="#e6e6e6" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight=".05"
+                android:layout_height="wrap_content"
+                android:id="@+id/playerAgility"
+                android:editable="false"
+                android:gravity="center"
+                android:text="3"/>
 
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight=".05"
+                android:layout_height="wrap_content"
+                android:id="@+id/playerArmour"
+                android:editable="false"
+                android:gravity="center"
+                android:text="10"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/playerType"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:editable="false"
+                android:layout_weight=".80"
+                android:paddingLeft="10sp"
+                android:text="Troll"/>
+
+        </LinearLayout>
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight=".84"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/playerSkills"
             android:layout_row="0"
             android:layout_column="1"
             android:editable="false"
-            android:layout_margin="2dp"
-            android:padding="1dp"
-            android:background="#e6e6e6"/>
+            android:paddingLeft="4sp"
+            android:text="dogde"/>
+
     </LinearLayout>
 </LinearLayout>
