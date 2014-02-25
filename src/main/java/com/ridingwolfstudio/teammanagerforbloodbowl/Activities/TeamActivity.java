@@ -64,10 +64,10 @@ public class TeamActivity extends FragmentActivity implements ActionBar.OnNaviga
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.team, menu);
+        getMenuInflater().inflate(R.menu.default_menu, menu);
         return true;
     }
-    
+
     @Override
     public boolean onNavigationItemSelected(int position, long id) {
         ListView listView = (ListView) findViewById(R.id.playerlist);
