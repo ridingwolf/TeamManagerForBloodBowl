@@ -6,8 +6,11 @@ public class Player extends PlayerTemplate
 	public String Name;	
 	public String[] ExtraSkills;
 	public Integer StarPlayerPoints;
-	
-	public Player(int nr, String name, PlayerType playerType)
+
+    public Player()
+    {}
+
+    public Player(int nr, String name, PlayerType playerType)
 	{
 		Nr = nr;
 		Name = name;

@@ -1,7 +1,6 @@
 package com.ridingwolfstudio.teammanagerforbloodbowl.Activities;
 
 import android.app.ActionBar;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
@@ -11,10 +10,10 @@ import android.widget.ListView;
 import com.ridingwolfstudio.teammanagerforbloodbowl.Adapters.ListViewPlayerAdapter;
 import com.ridingwolfstudio.teammanagerforbloodbowl.Data.Player;
 import com.ridingwolfstudio.teammanagerforbloodbowl.Data.Team;
+import com.ridingwolfstudio.teammanagerforbloodbowl.Mappers.PlayerMapper;
 import com.ridingwolfstudio.teammanagerforbloodbowl.Mappers.TeamMapper;
 import com.ridingwolfstudio.teammanagerforbloodbowl.Mocks.TeamMock;
 import com.ridingwolfstudio.teammanagerforbloodbowl.R;
-import com.ridingwolfstudio.teammanagerforbloodbowl.io.FileSystem;
 import com.ridingwolfstudio.teammanagerforbloodbowl.io.IAccessFiles;
 
 import org.json.JSONException;
@@ -49,7 +48,7 @@ public class TeamActivity extends FragmentActivity implements ActionBar.OnNaviga
         JSONObject obj = loadJSONFromAsset(R.raw.not_goblins);
         //if(obj != null)
         {
-            Team team = new TeamMapper().Create(obj);
+            Team team = new TeamMapper(new PlayerMapper()).Map(obj);
             teamNames[1] = team.Name;
         }
 
