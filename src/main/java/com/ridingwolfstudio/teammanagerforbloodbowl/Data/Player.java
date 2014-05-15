@@ -1,10 +1,12 @@
 package com.ridingwolfstudio.teammanagerforbloodbowl.Data;
 
+import java.util.List;
+
 public class Player extends PlayerTemplate
 {
 	public Integer Nr;
 	public String Name;	
-	public String[] ExtraSkills;
+	public List<String> ExtraSkills;
 	public Integer StarPlayerPoints;
 
     public Player()

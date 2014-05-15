@@ -1,5 +1,7 @@
 package com.ridingwolfstudio.teammanagerforbloodbowl.Data;
 
+import java.util.List;
+
 public class PlayerTemplate
 {
 	public String Type;
@@ -7,6 +9,6 @@ public class PlayerTemplate
 	public Integer Strength;
 	public Integer Agility;
 	public Integer Armour;
-	public String[] StartingSkills;
+	public List<String> StartingSkills;
 	public Integer Price;
 }

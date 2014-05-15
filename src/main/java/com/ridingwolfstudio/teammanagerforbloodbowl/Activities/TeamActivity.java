@@ -10,10 +10,8 @@ import android.widget.ListView;
 import com.ridingwolfstudio.teammanagerforbloodbowl.Adapters.ListViewPlayerAdapter;
 import com.ridingwolfstudio.teammanagerforbloodbowl.Data.Player;
 import com.ridingwolfstudio.teammanagerforbloodbowl.Data.Team;
-import com.ridingwolfstudio.teammanagerforbloodbowl.Mappers.PlayerMapper;
-import com.ridingwolfstudio.teammanagerforbloodbowl.Mappers.TeamMapper;
-import com.ridingwolfstudio.teammanagerforbloodbowl.Mocks.TeamMock;
 import com.ridingwolfstudio.teammanagerforbloodbowl.R;
+import com.ridingwolfstudio.teammanagerforbloodbowl.io.FileSystem;
 import com.ridingwolfstudio.teammanagerforbloodbowl.io.IAccessFiles;
 
 import org.json.JSONException;
@@ -22,11 +20,13 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TeamActivity extends FragmentActivity implements ActionBar.OnNavigationListener {
     private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
-    private Team[] LoadedTeams;
-    private IAccessFiles FileSystem;
+    private List<File> LoadedTeams;
+    private IAccessFiles FileSystem = new FileSystem();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,21 +37,16 @@ public class TeamActivity extends FragmentActivity implements ActionBar.OnNaviga
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
-        TeamMock mock = new TeamMock();
-        LoadedTeams = mock.Teams.toArray(new Team[mock.Teams.size()]);
-
-        String[] teamNames = new String[LoadedTeams.length];
-        for(int i = 0; i < LoadedTeams.length; i++)
-                teamNames[i] = LoadedTeams[i].Name;
-
-        // test
-        JSONObject obj = loadJSONFromAsset(R.raw.not_goblins);
-        //if(obj != null)
+        List<String> teamNames = new ArrayList<String>();
+        List<Team> teams = FileSystem.loadTeams();
+        LoadedTeams = new ArrayList<File>();
+        for(Team team : teams)
         {
-            Team team = new TeamMapper(new PlayerMapper()).Map(obj);
-            teamNames[1] = team.Name;
+            LoadedTeams.add(team.File);
+            teamNames.add(team.Name);
         }
 
+        teamNames.add("(+)New Team");
 
         // Set up the dropdown list navigation in the action bar.
         actionBar.setListNavigationCallbacks(
@@ -64,31 +59,6 @@ public class TeamActivity extends FragmentActivity implements ActionBar.OnNaviga
                         teamNames),
                         this
         );
-    }
-
-    public JSONObject loadJSONFromAsset(int jsonFileId){
-        FileSystem = new com.ridingwolfstudio.teammanagerforbloodbowl.io.FileSystem();
-        File teamDirectory = FileSystem.getTeamDirectory();
-        String[] files = FileSystem.getAllFileIdsFrom(teamDirectory);
-        JSONObject json = null;
-        try {
-
-            InputStream stream = getResources().openRawResource(jsonFileId);
-            int size = stream.available();
-            byte[] buffer = new byte[size];
-            stream.read(buffer);
-            stream.close();
-            String rawJson = new String(buffer, "UTF-8");
-            return new JSONObject(rawJson);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        } catch (JSONException ex){
-            ex.printStackTrace();
-        }
-
-        return json;
     }
 
     @Override
@@ -117,7 +87,11 @@ public class TeamActivity extends FragmentActivity implements ActionBar.OnNaviga
     public boolean onNavigationItemSelected(int position, long id) {
         ListView listView = (ListView) findViewById(R.id.playerlist);
 
-        ArrayAdapter<Player> arrayAdapter = new ListViewPlayerAdapter(this, LoadedTeams[position].Players);
+        Team team = new Team();
+        if(position < LoadedTeams.size())
+            team = FileSystem.loadTeam(LoadedTeams.get(position));
+
+        ArrayAdapter<Player> arrayAdapter = new ListViewPlayerAdapter(this, team.Players);
         listView.setAdapter(arrayAdapter);
         return true;
     }

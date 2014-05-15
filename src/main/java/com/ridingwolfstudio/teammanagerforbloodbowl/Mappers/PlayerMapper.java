@@ -5,6 +5,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlayerMapper implements IMap<JSONObject, Player> {
     @Override
     public Player Map(JSONObject json) {
@@ -31,17 +34,15 @@ public class PlayerMapper implements IMap<JSONObject, Player> {
         return null;
     }
 
-    private String[] GetSkills(JSONObject json, String skillSetName) throws JSONException {
+    private List<String> GetSkills(JSONObject json, String skillSetName) throws JSONException {
         JSONArray skillData = json.getJSONArray(skillSetName);
+        List<String> skills = new ArrayList<String>();
         if(null == skillData)
-            return new String[0];
+            return skills;
 
         int skillCount = skillData.length();
-        String[] skills = new String[skillCount];
         for(int i = 0; i < skillCount; i++)
-        {
-            skills[i] = skillData.getString(i);
-        }
+            skills.add(skillData.getString(i));
 
         return skills;
     }
